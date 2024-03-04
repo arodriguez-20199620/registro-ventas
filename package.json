@@ -22,5 +22,7 @@
     "mongoose": "^8.2.0",
     "morgan": "^1.10.0",
     "zxcvbn": "^4.4.2"
-  }
+  },
+  "type": "module"
+
 }
