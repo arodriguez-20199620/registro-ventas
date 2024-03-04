@@ -4,7 +4,9 @@
   "description": "Proyecto bimestral de taller 1er Bimestre",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [
     "ESModule"
@@ -24,5 +26,4 @@
     "zxcvbn": "^4.4.2"
   },
   "type": "module"
-
 }
