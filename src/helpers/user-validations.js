@@ -35,7 +35,10 @@ export const validatePassword = async (password = '') => {
 };
 
 export const validateRole = async (role = '') => {
-    if (!['ADMIN', 'CLIENT'].includes(role)) {
-        throw new Error('This role is not valid');
+    if (role !== '') {
+        if (!['ADMIN', 'CLIENT'].includes(role)) {
+            throw new Error('This role is not valid');
+        }
     }
+
 }

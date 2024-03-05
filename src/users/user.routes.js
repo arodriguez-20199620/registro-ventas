@@ -18,6 +18,7 @@ router.post(
         check("password").custom(validatePassword),
         check("firstname", "Enter your name").not().isEmpty(),
         check("lastname", "Enter your last name").not().isEmpty(),
+        check("role").custom(validateRole),
         validateFields,
     ], register);
 
