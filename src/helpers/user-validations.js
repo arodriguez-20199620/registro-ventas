@@ -39,6 +39,5 @@ export const validateRole = async (role = '') => {
         if (!['ADMIN', 'CLIENT'].includes(role)) {
             throw new Error('This role is not valid');
         }
-    }
-
+    }   
 }

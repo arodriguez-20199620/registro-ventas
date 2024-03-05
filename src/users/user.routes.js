@@ -5,10 +5,20 @@ import { check } from "express-validator";
 import { emailExists, validatePassword, validateRole } from "../helpers/user-validations.js";
 import { validateFields } from "../middlewares/validate-fields.js";
 
-// Controller
+// Controllers
 import { register } from "./user.controller.js";
+import { login } from "../auth/auth.controller.js";
 
 const router = Router()
+
+router.post(
+    '/login',
+    [
+        check('email', 'Please enter your email.').not().isEmpty(),
+        check('password', 'Please enter your password.').not().isEmpty(),
+        validateFields,
+    ], login)
+
 
 router.post(
     "/",
