@@ -4,17 +4,25 @@ import { check } from "express-validator";
 // validations
 import { validateFields } from "../middlewares/validate-fields.js";
 import { notCategory } from "../helpers/categories-validations.js";
-import { productExists, validatePrice } from "../helpers/products-validations.js";
+import { productExists, validatePrice, productExistsById } from "../helpers/products-validations.js";
 
 // Controller
-import { createProducts, viewCatalog } from "./products.controller.js";
+import { createProducts, viewCatalog, searchProduct } from "./products.controller.js";
 
 const router = Router();
 
 router.get("/", viewCatalog);
 
+router.get('/:productId',
+    [
+        check("productId", "The id is not a valid MongoDB format").isMongoId(),
+        check("productId").custom(productExistsById),
+        validateFields,
+    ], searchProduct);
+
 router.post("/",
     [
+
         check("name").custom(productExists),
         check("name", "Name is required").not().isEmpty(),
         check("name", "Name must be between 2 and 50 characters").isLength({ min: 2, max: 50 }),

@@ -7,6 +7,17 @@ export const productExists = async (name = '') => {
     }
 }
 
+export const productExistsById = async (id = '') => {
+    try {
+        const productExistsById = await Products.findById(id);
+        if (!productExistsById) {
+            throw new Error(`Product not found`);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const validatePrice = async (price = 0) => {
     const priceRegex = /^\d+(\.\d{1,2})?$/;
     if (!priceRegex.test(price.toString())) {

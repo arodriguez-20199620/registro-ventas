@@ -19,19 +19,36 @@ export const createProducts = async (req, res) => {
 
 export const viewCatalog = async (req, res) => {
     try {
-        const products = await Products.find({ status: true }); // Filtrar categorías activas
+        const products = await Products.find({ status: true });
 
-        const productsList = products.map(product => ({
-            id: product._id,
-            name: product.name,
-            price: product.price,
-            stock: product.stock,
-            sales: product.sales,
+        const productsList = await Promise.all(products.map(async (product) => {
+            const category = await Categories.findOne({ _id: product.categoryId });
+            return {
+                id: product._id,
+                name: product.name,
+                price: product.price,
+                stock: product.stock,
+                sales: product.sales,
+                category: category ? category.name : 'N/A',
+            };
         }));
 
         res.status(200).json(productsList);
     } catch (error) {
-        console.error('Error al obtener las categorías:', error);
-        res.status(500).json({ mensaje: 'Error al obtener las categorías. Por favor, inténtalo de nuevo.' });
+        console.error('Error getting catalog:', error);
+        res.status(500).json({ message: 'Error getting catalog. Please try again.' });
     }
+}
+
+
+export const searchProduct = async (req, res) => {
+    const productId = req.params.productId;
+    const product = await Products.findOne({ _id: productId });
+    const category = await Categories.findOne({ _id: product.categoryId });
+    res.status(200).json({
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        category: category.name
+    });
 }
