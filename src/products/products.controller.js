@@ -15,4 +15,23 @@ export const createProducts = async (req, res) => {
         stock: products.stock,
         category: categories.name
     })
-} 
+}
+
+export const viewCatalog = async (req, res) => {
+    try {
+        const products = await Products.find({ status: true }); // Filtrar categorías activas
+
+        const productsList = products.map(product => ({
+            id: product._id,
+            name: product.name,
+            price: product.price,
+            stock: product.stock,
+            sales: product.sales,
+        }));
+
+        res.status(200).json(productsList);
+    } catch (error) {
+        console.error('Error al obtener las categorías:', error);
+        res.status(500).json({ mensaje: 'Error al obtener las categorías. Por favor, inténtalo de nuevo.' });
+    }
+}

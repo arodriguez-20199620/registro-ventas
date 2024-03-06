@@ -7,10 +7,11 @@ import { notCategory } from "../helpers/categories-validations.js";
 import { productExists, validatePrice } from "../helpers/products-validations.js";
 
 // Controller
-import { createProducts } from "./products.controller.js";
-
+import { createProducts, viewCatalog } from "./products.controller.js";
 
 const router = Router();
+
+router.get("/", viewCatalog);
 
 router.post("/",
     [
