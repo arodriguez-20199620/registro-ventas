@@ -9,6 +9,7 @@ import morgan from 'morgan'
 // routes
 import categoriesRoutes from '../src/categories/categories.routes.js';
 import userRoutes from '../src/users/user.routes.js';
+import productsRoutes from '../src/products/products.routes.js';
 
 class Server {
 
@@ -17,11 +18,11 @@ class Server {
         this.port = process.env.PORT;
         this.userPath = '/controlsales/v1/user';
         this.categoriesPath = '/controlsales/v1/categories'
+        this.productsPath = '/controlsales/v1/products'
 
         this.conectarDB();
         this.middlewares();
         this.routes();
-
     }
 
     async conectarDB() {
@@ -39,6 +40,8 @@ class Server {
     routes() {
         this.app.use(this.userPath, userRoutes);
         this.app.use(this.categoriesPath, categoriesRoutes);
+        this.app.use(this.productsPath, productsRoutes);
+
     }
 
     listen() {
