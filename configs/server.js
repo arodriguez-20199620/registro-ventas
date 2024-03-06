@@ -7,7 +7,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 
 // routes
-import categoriesRoutes from '../src/category/categories.routes.js';
+import categoriesRoutes from '../src/categories/categories.routes.js';
 import userRoutes from '../src/users/user.routes.js';
 
 class Server {

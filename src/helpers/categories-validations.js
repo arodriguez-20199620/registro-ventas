@@ -1,4 +1,4 @@
-import Categories from "../category/categories.model.js";
+import Categories from "../categories/categories.model.js";
 
 export const categoryExists = async (name = '') => {
     try {
