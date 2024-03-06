@@ -11,6 +11,18 @@ export const categoryExists = async (name = '') => {
     }
 }
 
+export const categoryExistsById = async (id = '') => {
+    try {
+        const categoryExistsById = await Categories.findById(id);
+        if (!categoryExistsById) {
+            throw new Error(`Category not found`);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 export const notCategory = async (category = '') => {
     try {
         const notCategory = await Categories.findOne({ name: category });
