@@ -5,10 +5,10 @@ import { check } from "express-validator";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { categoryExists, categoryExistsById } from "../helpers/categories-validations.js";
 import { validateToken } from "../middlewares/validate-token.js";
-import { validateUserRole} from "../middlewares/validate-role.js"
+import { validateUserRole } from "../middlewares/validate-role.js"
 
 //controller
-import { createCategories, editCategories} from "./categories.controller.js";
+import { createCategories, editCategories, deleteCategories } from "./categories.controller.js";
 
 const router = Router();
 
@@ -39,6 +39,15 @@ router.put('/:categoryId',
             .isLength({ min: 3, max: 50 })
             .withMessage("Category name must be between 3 and 50 characters."),
         validateFields,
-    ], editCategories)
+    ], editCategories);
+
+router.delete('/:categoryId',
+    [
+        validateToken,
+        validateUserRole('ADMIN'),
+        check("categoryId", "The id is not a valid MongoDB format").isMongoId(),
+        check("categoryId").custom(categoryExistsById),
+        validateFields
+    ], deleteCategories)
 
 export default router

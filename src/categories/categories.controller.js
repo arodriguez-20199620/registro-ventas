@@ -1,4 +1,5 @@
 import Categories from "./categories.model.js";
+import Products from "../products/products.model.js";
 
 export const createCategories = async (req, res) => {
     const { name } = req.body;
@@ -28,5 +29,27 @@ export const editCategories = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json('Internal Server Error');
+    }
+}
+
+export const deleteCategories = async (req, res) => {
+    const categoryId = req.params.categoryId;
+
+    try {
+        const products = await Products.find({ categoryId: categoryId });
+
+        const defaultCategory = await Categories.findOne({ name: 'Sin Clasificar' });
+
+        await Promise.all(products.map(async (product) => {
+            await Products.findByIdAndUpdate(product._id, { $set: { categoryId: defaultCategory._id } });
+        }));
+
+        // Eliminar la categoría
+        await Categories.findByIdAndUpdate(categoryId, { status: false });
+
+        return res.status(200).json({ msg: 'Categoría eliminada exitosamente.' });
+    } catch (error) {
+        console.error('Error al eliminar la categoría:', error);
+        return res.status(500).json({ mensaje: 'Error al eliminar la categoría. Por favor, inténtalo de nuevo.' });
     }
 }
