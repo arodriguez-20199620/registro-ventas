@@ -8,9 +8,11 @@ import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 
 //controller
-import { createCategories, editCategories, deleteCategories } from "./categories.controller.js";
+import { createCategories, editCategories, deleteCategories, getCategories} from "./categories.controller.js";
 
 const router = Router();
+
+router.get("/", getCategories);
 
 router.post(
     "/",

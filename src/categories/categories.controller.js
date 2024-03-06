@@ -53,3 +53,20 @@ export const deleteCategories = async (req, res) => {
         return res.status(500).json({ mensaje: 'Error al eliminar la categoría. Por favor, inténtalo de nuevo.' });
     }
 }
+
+export const getCategories = async (req, res) => {
+    try {
+        const categories = await Categories.find({ status: true }); // Filtrar categorías activas
+
+        const categoryList = categories.map(category => ({
+            id: category._id,
+            name: category.name
+        }));
+
+        res.status(200).json(categoryList);
+    } catch (error) {
+        console.error('Error al obtener las categorías:', error);
+        res.status(500).json({ mensaje: 'Error al obtener las categorías. Por favor, inténtalo de nuevo.' });
+    }
+}
+
