@@ -10,13 +10,11 @@ export const register = async (req, res) => {
 
     await user.save();
 
-    const data = {
+    res.status(201).json({
         email: user.email,
         firstname: user.firstname,
         lastname: user.lastname,
-        role: user.role,
-    }
-    res.status(201).json({
-        data
+        role: user.role
     });
 }
+

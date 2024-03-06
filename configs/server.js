@@ -6,6 +6,8 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 
+// routes
+import categoriesRoutes from '../src/category/categories.routes.js';
 import userRoutes from '../src/users/user.routes.js';
 
 class Server {
@@ -14,6 +16,7 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.userPath = '/controlsales/v1/user';
+        this.categoriesPath = '/controlsales/v1/categories'
 
         this.conectarDB();
         this.middlewares();
@@ -35,6 +38,7 @@ class Server {
 
     routes() {
         this.app.use(this.userPath, userRoutes);
+        this.app.use(this.categoriesPath, categoriesRoutes);
     }
 
     listen() {
