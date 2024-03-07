@@ -8,7 +8,7 @@ import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 
 //controller
-import { createCategories, editCategories, deleteCategories, getCategories} from "./categories.controller.js";
+import { createCategories, editCategories, deleteCategories, getCategories } from "./categories.controller.js";
 
 const router = Router();
 
@@ -17,6 +17,8 @@ router.get("/", getCategories);
 router.post(
     "/",
     [
+        validateToken,
+        validateUserRole('ADMIN'),
         check("name").custom(categoryExists),
         check("name", "Enter a name for the category.").notEmpty(),
         check("name", "Invalid category name format.")
