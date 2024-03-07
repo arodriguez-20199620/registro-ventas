@@ -47,10 +47,10 @@ export const deleteCategories = async (req, res) => {
         // Eliminar la categoría
         await Categories.findByIdAndUpdate(categoryId, { status: false });
 
-        return res.status(200).json({ msg: 'Categoría eliminada exitosamente.' });
+        res.status(200).json({ msg: 'Category deleted successfully.' });
     } catch (error) {
-        console.error('Error al eliminar la categoría:', error);
-        return res.status(500).json({ mensaje: 'Error al eliminar la categoría. Por favor, inténtalo de nuevo.' });
+        console.error(error);
+        res.status(500).json('Internal Server Error');
     }
 }
 

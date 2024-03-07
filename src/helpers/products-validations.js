@@ -13,6 +13,9 @@ export const productExistsById = async (id = '') => {
         if (!productExistsById) {
             throw new Error(`Product not found`);
         }
+        if (!productExistsById.status) {
+            throw new Error(`Product not found`);
+        }
     } catch (error) {
         throw error;
     }

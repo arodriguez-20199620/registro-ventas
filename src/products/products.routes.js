@@ -9,7 +9,7 @@ import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 
 // Controller
-import { createProducts, viewCatalog, searchProduct, editProducts } from "./products.controller.js";
+import { createProducts, viewCatalog, searchProduct, editProducts, deleteProducts } from "./products.controller.js";
 
 const router = Router();
 
@@ -38,7 +38,8 @@ router.post("/",
     ], createProducts)
 
 router.put('/:productId',
-    [validateToken,
+    [
+        validateToken,
         validateUserRole('ADMIN'),
         check("productId", "The id is not a valid MongoDB format").isMongoId(),
         check("productId").custom(productExistsById),
@@ -52,4 +53,14 @@ router.put('/:productId',
         check("category").custom(notCategory),
         validateFields,
     ], editProducts);
+
+router.delete('/:productId',
+    [
+        validateToken,
+        validateUserRole('ADMIN'),
+        check("productId", "The id is not a valid MongoDB format").isMongoId(),
+        check("productId").custom(productExistsById),
+        validateFields,
+    ], deleteProducts);
+
 export default router;

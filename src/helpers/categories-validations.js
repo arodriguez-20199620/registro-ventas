@@ -17,6 +17,9 @@ export const categoryExistsById = async (id = '') => {
         if (!categoryExistsById) {
             throw new Error(`Category not found`);
         }
+        if (!categoryExistsById.status) {
+            throw new Error(`Category not found`);
+        }
     } catch (error) {
         throw error;
     }
