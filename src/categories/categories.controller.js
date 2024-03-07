@@ -56,7 +56,7 @@ export const deleteCategories = async (req, res) => {
 
 export const getCategories = async (req, res) => {
     try {
-        const categories = await Categories.find({ status: true }); // Filtrar categorías activas
+        const categories = await Categories.find({ status: true }); 
 
         const categoryList = categories.map(category => ({
             id: category._id,

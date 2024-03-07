@@ -87,6 +87,28 @@ export const viewCatalog = async (req, res) => {
     }
 }
 
+export const availableProducts = async (req, res) => {
+    try {
+        const products = await Products.find({ status: true, stock: 0 });
+
+        if (products.length > 0) {
+            const productsList = products.map(product => (
+                {
+                    id: product._id,
+                    name: product.name,
+                    stock: product.stock,
+                }));
+            res.status(200).json({ msg: "Products out of stock", productsList });
+        } else {
+            res.status(200).json({ msg: "There are no products out of stock, Enjoy all our products :)" });
+        }
+
+    } catch (error) {
+        console.error('Error getting catalog:', error);
+        res.status(500).json({ message: 'Error getting catalog. Please try again.' });
+    }
+}
+
 export const moreSales = async (req, res) => {
     try {
         const products = await Products.find({ status: true }).sort({ sales: -1 }).exec();
