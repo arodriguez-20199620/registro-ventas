@@ -87,6 +87,27 @@ export const viewCatalog = async (req, res) => {
     }
 }
 
+export const moreSales = async (req, res) => {
+    try {
+        const products = await Products.find({ status: true }).sort({ sales: -1 }).exec();
+        const productsList = await Promise.all(products.map(async (product) => {
+            const category = await Categories.findOne({ _id: product.categoryId });
+            return {
+                id: product._id,
+                name: product.name,
+                price: product.price,
+                stock: product.stock,
+                sales: product.sales,
+                category: category ? category.name : 'N/A',
+            };
+        }));
+
+        return res.status(200).json(productsList);
+    } catch (error) {
+        throw new Error('Error al obtener productos por ventas: ' + error.message);
+    }
+}
+
 export const searchProduct = async (req, res) => {
     const productId = req.params.productId;
     const product = await Products.findOne({ _id: productId });

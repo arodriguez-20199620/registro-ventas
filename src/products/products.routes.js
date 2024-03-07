@@ -9,11 +9,14 @@ import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 
 // Controller
-import { createProducts, viewCatalog, searchProduct, editProducts, deleteProducts } from "./products.controller.js";
+import { createProducts, viewCatalog, searchProduct, editProducts, deleteProducts, moreSales } from "./products.controller.js";
 
 const router = Router();
 
 router.get("/", viewCatalog);
+
+
+router.get("/sales", moreSales);
 
 router.get('/:productId',
     [
