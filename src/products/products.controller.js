@@ -26,7 +26,7 @@ export const editProducts = async (req, res) => {
         const { name, price, stock, category } = req.body;
 
         const categories = await Categories.findOne({ name: category });
-        // Actualizar solo los detalles específicos del producto
+
         await Products.findByIdAndUpdate(productId, {
             $set: {
                 name: name || products.name,
@@ -36,7 +36,6 @@ export const editProducts = async (req, res) => {
             },
         });
 
-        // Obtener el producto actualizado
         const product = await Products.findById(productId);
 
         res.status(201).json({
@@ -64,6 +63,8 @@ export const deleteProducts = async (req, res) => {
     }
 }
 
+
+
 export const viewCatalog = async (req, res) => {
     try {
         const products = await Products.find({ status: true });
@@ -82,8 +83,8 @@ export const viewCatalog = async (req, res) => {
 
         res.status(200).json(productsList);
     } catch (error) {
-        console.error('Error getting catalog:', error);
-        res.status(500).json({ message: 'Error getting catalog. Please try again.' });
+        console.error(error);
+        res.status(500).json('Internal Server Error');
     }
 }
 
@@ -104,14 +105,16 @@ export const availableProducts = async (req, res) => {
         }
 
     } catch (error) {
-        console.error('Error getting catalog:', error);
-        res.status(500).json({ message: 'Error getting catalog. Please try again.' });
+        console.error(error);
+        res.status(500).json('Internal Server Error');
     }
 }
 
 export const moreSales = async (req, res) => {
     try {
         const products = await Products.find({ status: true }).sort({ sales: -1 }).exec();
+
+
         const productsList = await Promise.all(products.map(async (product) => {
             const category = await Categories.findOne({ _id: product.categoryId });
             return {
@@ -124,9 +127,12 @@ export const moreSales = async (req, res) => {
             };
         }));
 
-        return res.status(200).json(productsList);
+        res.status(200).json({
+            productsList
+        });
     } catch (error) {
-        throw new Error('Error al obtener productos por ventas: ' + error.message);
+        console.error(error);
+        res.status(500).json('Internal Server Error');
     }
 }
 
@@ -134,9 +140,7 @@ export const searchProduct = async (req, res) => {
     const productName = req.params.productName;
 
     try {
-        // Realizar la búsqueda de productos por nombre
-        const products = await Products.find({ name: { $regex: new RegExp(productName, 'i') } });
-
+        const products = await Products.find({ name: productName });
 
         const productsList = await Promise.all(products.map(async (product) => {
             const category = await Categories.findOne({ _id: product.categoryId });
@@ -149,22 +153,12 @@ export const searchProduct = async (req, res) => {
                 category: category ? category.name : 'N/A',
             };
         }));
-
-        return res.status(200).json({
-            products
+        res.status(200).json({
+            productsList
         });
+
     } catch (error) {
-        console.error('Error al buscar productos por nombre:', error);
-        return res.status(500).json({ mensaje: 'Error al buscar productos por nombre. Por favor, inténtalo de nuevo.' });
+        console.error(error);
+        res.status(500).json('Internal Server Error');
     }
-
-
-    const product = await Products.findOne({ _id: productId });
-    const category = await Categories.findOne({ _id: product.categoryId });
-    res.status(200).json({
-        name: product.name,
-        price: product.price,
-        stock: product.stock,
-        category: category.name
-    });
 }

@@ -21,6 +21,7 @@ router.get("/exhausted", availableProducts);
 
 router.get('/:productName',
     [
+        check("productName").custom(notProduct),
         validateFields,
     ], searchProduct);
 
