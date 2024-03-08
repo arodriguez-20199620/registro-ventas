@@ -18,4 +18,26 @@ export const register = async (req, res) => {
     });
 }
 
+export const assignRole = async (req, res) => {
+    const email = req.params.email;
+    try {
+        const user = await User.findOne({ email: email });
+
+        const { role } = req.body;
+
+        await User.findByIdAndUpdate(user._id, {
+            $set: {
+                role: role || user.role,
+            },
+        });
+        const userUpdate = await User.findOne({ email: email });
+        res.status(201).json({
+            msg: 'Role Successfully Assigned',
+            userUpdate,
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Internal Server Error');
+    }
+}
 

@@ -2,12 +2,12 @@ import { Router } from "express";
 import { check } from "express-validator";
 
 // Validations
-import { emailExists, validatePassword, validateRole } from "../helpers/user-validations.js";
+import { emailExists, validatePassword, validateRole, notEmail } from "../helpers/user-validations.js";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 // Controllers
-import { register } from "./user.controller.js";
+import { register, assignRole } from "./user.controller.js";
 import { login } from "../auth/auth.controller.js";
 
 const router = Router()
@@ -21,8 +21,7 @@ router.post(
     ], login)
 
 
-router.post(
-    "/",
+router.post("/",
     [
         validateToken,
         validateUserRole('ADMIN'),
@@ -35,8 +34,7 @@ router.post(
         validateFields,
     ], register);
 
-router.post(
-    "/register",
+router.post("/register",
     [
         check("email", "This is not a valid email").isEmail(),
         check("email").custom(emailExists),
@@ -45,5 +43,14 @@ router.post(
         check("lastname", "Enter your last name").not().isEmpty(),
         validateFields,
     ], register);
+
+router.put('/assign/:email',
+    [
+        validateToken,
+        validateUserRole('ADMIN'),
+        check("email", "The id is not a valid MongoDB format").isMongoId(),
+        check("email").custom(notEmail),
+        check("role").custom(validateRole),
+    ], assignRole);
 
 export default router

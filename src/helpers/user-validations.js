@@ -12,6 +12,17 @@ export const emailExists = async (email = '') => {
     }
 }
 
+export const notEmail = async (email = '') => {
+    try {
+        const notEmail = await User.findOne({ email });
+        if (!notEmail) {
+            throw new Error(`The email ${email} is not valid, please enter again`);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const existUserById = async (id = '') => {
     try {
         const existUserById = await User.findById(id);
