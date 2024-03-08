@@ -4,7 +4,8 @@ import { check } from "express-validator";
 // Validations
 import { emailExists, validatePassword, validateRole } from "../helpers/user-validations.js";
 import { validateFields } from "../middlewares/validate-fields.js";
-
+import { validateToken } from "../middlewares/validate-token.js";
+import { validateUserRole } from "../middlewares/validate-role.js"
 // Controllers
 import { register } from "./user.controller.js";
 import { login } from "../auth/auth.controller.js";
@@ -23,6 +24,8 @@ router.post(
 router.post(
     "/",
     [
+        validateToken,
+        validateUserRole('ADMIN'),
         check("email", "This is not a valid email").isEmail(),
         check("email").custom(emailExists),
         check("password").custom(validatePassword),
