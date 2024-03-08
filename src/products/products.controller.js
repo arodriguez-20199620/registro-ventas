@@ -131,7 +131,34 @@ export const moreSales = async (req, res) => {
 }
 
 export const searchProduct = async (req, res) => {
-    const productId = req.params.productId;
+    const productName = req.params.productName;
+
+    try {
+        // Realizar la búsqueda de productos por nombre
+        const products = await Products.find({ name: { $regex: new RegExp(productName, 'i') } });
+
+
+        const productsList = await Promise.all(products.map(async (product) => {
+            const category = await Categories.findOne({ _id: product.categoryId });
+            return {
+                id: product._id,
+                name: product.name,
+                price: product.price,
+                stock: product.stock,
+                sales: product.sales,
+                category: category ? category.name : 'N/A',
+            };
+        }));
+
+        return res.status(200).json({
+            products
+        });
+    } catch (error) {
+        console.error('Error al buscar productos por nombre:', error);
+        return res.status(500).json({ mensaje: 'Error al buscar productos por nombre. Por favor, inténtalo de nuevo.' });
+    }
+
+
     const product = await Products.findOne({ _id: productId });
     const category = await Categories.findOne({ _id: product.categoryId });
     res.status(200).json({

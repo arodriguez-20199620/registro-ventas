@@ -7,6 +7,13 @@ export const productExists = async (name = '') => {
     }
 }
 
+export const notProduct = async (name = '') => {
+    const notProduct = await Products.findOne({ name });
+    if (!notProduct) {
+        throw new Error(`The product ${name} is not valid, please enter again`);
+    }
+}
+
 export const productExistsById = async (id = '') => {
     try {
         const productExistsById = await Products.findById(id);

@@ -32,9 +32,8 @@ export const validateToken = async (req, res, next) => {
 
         next();
     } catch (e) {
-        console.log(e),
-            res.status(401).json({
-                msg: "Token no válido",
-            });
+        res.status(401).json({
+            msg: "Token no válido",
+        });
     }
 };
