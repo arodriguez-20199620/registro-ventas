@@ -29,6 +29,9 @@ export const existUserById = async (id = '') => {
         if (!existUserById) {
             throw new Error(`The user with the ${id} does not exist`);
         }
+        if (!existUserById.status) {
+            throw new Error(`Category not found`);
+        }
     } catch (error) {
         throw error;
     }

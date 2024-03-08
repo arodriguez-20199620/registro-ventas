@@ -41,7 +41,7 @@ class Server {
         this.app.use(this.userPath, userRoutes);
         this.app.use(this.categoriesPath, categoriesRoutes);
         this.app.use(this.productsPath, productsRoutes);
-
+        
     }
 
     listen() {

@@ -2,12 +2,12 @@ import { Router } from "express";
 import { check } from "express-validator";
 
 // Validations
-import { emailExists, validatePassword, validateRole, notEmail } from "../helpers/user-validations.js";
+import { emailExists, validatePassword, validateRole, notEmail, existUserById } from "../helpers/user-validations.js";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 // Controllers
-import { register, assignRole } from "./user.controller.js";
+import { register, assignRole, deleteUserAdmin, deleteUserClient, editUser } from "./user.controller.js";
 import { login } from "../auth/auth.controller.js";
 
 const router = Router()
@@ -51,6 +51,30 @@ router.put('/assign/:email',
         check("email", "The id is not a valid MongoDB format").isMongoId(),
         check("email").custom(notEmail),
         check("role").custom(validateRole),
+        validateFields,
     ], assignRole);
+
+
+router.put('/',
+    [
+        validateToken,
+        check("password").custom(validatePassword),
+        check("firstname", "Enter your name").not().isEmpty(),
+        check("lastname", "Enter your last name").not().isEmpty(),
+        validateFields,
+    ], editUser)
+
+router.delete('/adminDelte/:userId',
+    [
+        validateToken,
+        check("userId", "The id is not a valid MongoDB format").isMongoId(),
+        check("userId").custom(existUserById),
+        validateFields,
+    ], deleteUserAdmin)
+
+router.delete('/', validateToken, deleteUserClient);
+
+
+
 
 export default router
