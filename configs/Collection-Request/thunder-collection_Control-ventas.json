@@ -1,226 +1,292 @@
 {
     "client": "Thunder Client",
     "collectionName": "Control-ventas",
-    "dateExported": "2024-03-08T03:14:30.122Z",
+    "dateExported": "2024-03-08T22:48:27.716Z",
     "version": "1.1",
     "folders": [
         {
-            "_id": "2a43626b-ea75-4122-9c20-f6b19c578514",
+            "_id": "a9cc94dc-e371-4f7d-a866-f79ee3c44d0f",
             "name": "Users",
             "containerId": "",
-            "created": "2024-03-05T04:58:27.070Z",
+            "created": "2024-03-08T13:27:37.328Z",
             "sortNum": 10000
         },
         {
-            "_id": "7b0a6fd2-5374-4251-b778-ee08b6dfa126",
+            "_id": "a6e6205b-4fd1-4cbd-b8f5-d85c97c23b17",
             "name": "Categories",
             "containerId": "",
-            "created": "2024-03-06T00:11:07.608Z",
+            "created": "2024-03-08T13:27:37.329Z",
             "sortNum": 20000
         },
         {
-            "_id": "e424b301-e8fd-4e78-a3ab-1f5de1cd8841",
+            "_id": "8bf8bac9-2c83-4fa5-89bb-778ea8e7f775",
             "name": "Products",
             "containerId": "",
-            "created": "2024-03-06T02:16:40.538Z",
+            "created": "2024-03-08T13:27:37.330Z",
             "sortNum": 30000
         },
         {
-            "_id": "a7697207-adb5-44fb-b92d-0b586f38bbf6",
+            "_id": "bf4bc5ae-d204-48c0-a45a-cff44bb65de8",
             "name": "Filters",
-            "containerId": "e424b301-e8fd-4e78-a3ab-1f5de1cd8841",
-            "created": "2024-03-08T02:17:57.260Z",
+            "containerId": "8bf8bac9-2c83-4fa5-89bb-778ea8e7f775",
+            "created": "2024-03-08T13:27:37.331Z",
             "sortNum": 40000
+        },
+        {
+            "_id": "cf49cc2c-29a8-4a73-8dd4-0ede1ab16528",
+            "name": "cart",
+            "containerId": "",
+            "created": "2024-03-08T13:55:03.461Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "b27764a4-a060-4522-bba8-215c4134bfd1",
+            "name": "ADMIN",
+            "containerId": "a9cc94dc-e371-4f7d-a866-f79ee3c44d0f",
+            "created": "2024-03-08T17:39:37.005Z",
+            "sortNum": 60000
+        },
+        {
+            "_id": "ce258856-d059-40e8-b9b0-76593055eade",
+            "name": "Client",
+            "containerId": "a9cc94dc-e371-4f7d-a866-f79ee3c44d0f",
+            "created": "2024-03-08T17:39:51.162Z",
+            "sortNum": 70000
         }
     ],
     "requests": [
         {
-            "_id": "3be1eee7-2ac7-47fc-a990-92e9b5556324",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "e424b301-e8fd-4e78-a3ab-1f5de1cd8841",
+            "_id": "fc4121c4-7b6f-4da0-b608-9fc48598ab3f",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "8bf8bac9-2c83-4fa5-89bb-778ea8e7f775",
             "name": "Ver catalogo",
             "url": "/controlsales/v1/products/",
             "method": "GET",
             "sortNum": 5000,
-            "created": "2024-03-07T00:06:47.716Z",
-            "modified": "2024-03-07T00:06:55.869Z",
+            "created": "2024-03-08T13:27:37.336Z",
+            "modified": "2024-03-08T13:27:37.336Z",
             "headers": [],
             "params": [],
             "tests": []
         },
         {
-            "_id": "6b0361f6-3533-4f08-85bd-08dc0129d44b",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "e424b301-e8fd-4e78-a3ab-1f5de1cd8841",
+            "_id": "e5c81c5e-a86c-4c42-9a39-f08fdd26692f",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "8bf8bac9-2c83-4fa5-89bb-778ea8e7f775",
             "name": "Agregar productos",
             "url": "/controlsales/v1/products/",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2024-03-06T02:16:45.819Z",
-            "modified": "2024-03-08T02:16:59.673Z",
+            "created": "2024-03-08T13:27:37.332Z",
+            "modified": "2024-03-08T14:23:59.828Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNzMxMWY0MTljZTU2ZWFhMzc5MjQiLCJpYXQiOjE3MDk4NjM3MDEsImV4cCI6MTcwOTg2NzMwMX0.RQuHxOSogfPDjbqhcsu0G0cdwif47rawX7JYewoY9qw"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViMWVlNzY5ZWVkYTA5N2FjOWU0YjUiLCJpYXQiOjE3MDk5MDc3MDgsImV4cCI6MTcwOTkxMTMwOH0.RL-pa_TSPR9CxLpZuyaVtxlO0o4F3A-1OMBelTS45KY"
                 }
             ],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Diodos\",\n  \"price\": 5,\n  \"stock\": 12,\n  \"category\": \"Electronica\"\n}",
+                "raw": "{\n  \"name\": \"Cebolla\",\n  \"price\": 5,\n  \"stock\": 12,\n  \"category\": \"Verduras\"\n}",
                 "form": []
             },
             "reqType": "post",
             "tests": []
         },
         {
-            "_id": "78f73321-a0c1-4820-a162-a51df06b59bd",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "7b0a6fd2-5374-4251-b778-ee08b6dfa126",
+            "_id": "f4894d29-ab31-4e55-bec1-4fdbdeed0144",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "ce258856-d059-40e8-b9b0-76593055eade",
+            "name": "Registro-Cliente",
+            "url": "/controlsales/v1/user/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-08T16:31:00.791Z",
+            "modified": "2024-03-08T17:40:18.622Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"test3@email.com\",\n  \"password\": \"kinal$2024$$\",\n  \"firstname\": \"Angel\",\n  \"lastname\": \"Rodriguez\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2071bb50-bba0-4c60-87c8-0e8d8e8d075b",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "b27764a4-a060-4522-bba8-215c4134bfd1",
+            "name": "AssignRole",
+            "url": "/controlsales/v1/user/assign/esantos@email.com",
+            "method": "PUT",
+            "sortNum": 10000,
+            "created": "2024-03-08T17:29:15.228Z",
+            "modified": "2024-03-08T17:37:38.529Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViMmJiODg4MDVmMGEzOWNjMjdiZjIiLCJpYXQiOjE3MDk5MTkzNzcsImV4cCI6MTcwOTkyMjk3N30.vAv_hkbbCYUqw9thY4MKFy5E31WyPyQZYYVG4ctHRvg"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"role\": \"ADMIN\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3e56c385-5e14-49a2-b873-0ff4d23182c1",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "a6e6205b-4fd1-4cbd-b8f5-d85c97c23b17",
             "name": "Agregar Categorias",
             "url": "http://localhost:8080/controlsales/v1/categories/",
             "method": "POST",
             "sortNum": 15000,
-            "created": "2024-03-06T00:11:16.072Z",
-            "modified": "2024-03-08T02:11:26.204Z",
+            "created": "2024-03-08T13:27:37.331Z",
+            "modified": "2024-03-08T14:22:18.878Z",
             "headers": [
                 {
                     "name": "x-token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWVhNzMxMWY0MTljZTU2ZWFhMzc5MjQiLCJpYXQiOjE3MDk4NjM3MDEsImV4cCI6MTcwOTg2NzMwMX0.RQuHxOSogfPDjbqhcsu0G0cdwif47rawX7JYewoY9qw"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViMWVlNzY5ZWVkYTA5N2FjOWU0YjUiLCJpYXQiOjE3MDk5MDc3MDgsImV4cCI6MTcwOTkxMTMwOH0.RL-pa_TSPR9CxLpZuyaVtxlO0o4F3A-1OMBelTS45KY"
                 }
             ],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Sin Clasificar\"\n}",
+                "raw": "{\n  \"name\": \"Electrodomestios\"\n}",
                 "form": []
             },
             "reqType": "post",
             "tests": []
         },
         {
-            "_id": "23b562bc-1c58-4c54-a132-1c92227ed458",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "a7697207-adb5-44fb-b92d-0b586f38bbf6",
+            "_id": "89034c6c-0b79-45c0-bf27-3bb291d3fead",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "b27764a4-a060-4522-bba8-215c4134bfd1",
+            "name": "Registro-Administrador",
+            "url": "/controlsales/v1/user/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-08T13:27:37.329Z",
+            "modified": "2024-03-08T16:31:16.929Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWViMmJiODg4MDVmMGEzOWNjMjdiZjIiLCJpYXQiOjE3MDk5MTQ5MzQsImV4cCI6MTcwOTkxODUzNH0.U-iHvHjKorzp6hcfEO6RJFmE_C_YClnJZWa2PO3YLvA"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"test1@email.com\",\n  \"password\": \"kinal$2024$$\",\n  \"firstname\": \"Angel\",\n  \"lastname\": \"Rodriguez\",\n  \"role\": \"CLIENT\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "24357a58-b373-4d42-a1ac-27e26d185a1c",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "bf4bc5ae-d204-48c0-a45a-cff44bb65de8",
             "name": "Mas vendidos",
             "url": "/controlsales/v1/products/sales",
             "method": "GET",
             "sortNum": 20000,
-            "created": "2024-03-07T04:54:10.460Z",
-            "modified": "2024-03-07T04:54:10.460Z",
+            "created": "2024-03-08T13:27:37.341Z",
+            "modified": "2024-03-08T13:27:37.341Z",
             "headers": [],
             "params": [],
             "tests": []
         },
         {
-            "_id": "74f4fd97-7cdb-4c82-9549-bbe3faaaaeff",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "2a43626b-ea75-4122-9c20-f6b19c578514",
-            "name": "Registro",
-            "url": "/controlsales/v1/user/",
-            "method": "POST",
-            "sortNum": 30000,
-            "created": "2024-03-05T04:58:37.958Z",
-            "modified": "2024-03-08T02:08:17.738Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"email\": \"arodriguez@email.com\",\n  \"password\": \"kinal@2024$$\",\n  \"firstname\": \"Angel\",\n  \"lastname\": \"Rodriguez\",\n  \"role\":\"ADMIN\"\n}",
-                "form": []
-            },
-            "reqType": "post",
-            "tests": []
-        },
-        {
-            "_id": "0f4025d7-ab02-4906-9391-31e44c261393",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "7b0a6fd2-5374-4251-b778-ee08b6dfa126",
+            "_id": "c5761810-ca32-42b3-b9cd-02fb4db1cc40",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "a6e6205b-4fd1-4cbd-b8f5-d85c97c23b17",
             "name": "Ver Categorias",
             "url": "http://localhost:8080/controlsales/v1/categories/",
             "method": "GET",
             "sortNum": 30000,
-            "created": "2024-03-06T04:52:11.663Z",
-            "modified": "2024-03-06T04:52:18.781Z",
+            "created": "2024-03-08T13:27:37.335Z",
+            "modified": "2024-03-08T13:27:37.335Z",
             "headers": [],
             "params": [],
             "tests": []
         },
         {
-            "_id": "61d9907a-7b9b-4211-9531-d1b9c428eb0f",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "a7697207-adb5-44fb-b92d-0b586f38bbf6",
+            "_id": "4fc02756-ca16-42fc-a36a-2bf9fbb51587",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "bf4bc5ae-d204-48c0-a45a-cff44bb65de8",
             "name": "Productos Agotados",
             "url": "/controlsales/v1/products/exhausted",
             "method": "GET",
             "sortNum": 35000,
-            "created": "2024-03-07T02:07:55.656Z",
-            "modified": "2024-03-07T04:54:32.710Z",
+            "created": "2024-03-08T13:27:37.340Z",
+            "modified": "2024-03-08T13:27:37.340Z",
             "headers": [],
             "params": [],
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "4c5e1de5-96be-4433-81b4-3f74bc5253fd",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "2a43626b-ea75-4122-9c20-f6b19c578514",
+            "_id": "b1c519f5-21e3-41ba-90bd-88d71ac739a9",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "a9cc94dc-e371-4f7d-a866-f79ee3c44d0f",
             "name": "Login",
             "url": "/controlsales/v1/user/login/",
             "method": "POST",
             "sortNum": 40000,
-            "created": "2024-03-05T05:12:03.719Z",
-            "modified": "2024-03-08T02:08:21.169Z",
+            "created": "2024-03-08T13:27:37.330Z",
+            "modified": "2024-03-08T17:36:17.371Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"arodriguez@email.com\",\n  \"password\": \"kinal@2024$$\"\n}",
+                "raw": "{\n  \"email\": \"arodriguez@email.com\",\n  \"password\": \"kinal$2024$$\"\n}",
                 "form": []
             },
             "reqType": "post",
             "tests": []
         },
         {
-            "_id": "36173d21-55d9-4cf5-a181-4ab65ccae573",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "a7697207-adb5-44fb-b92d-0b586f38bbf6",
+            "_id": "4cc75219-d602-4712-ab4f-9273fc44f8db",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "bf4bc5ae-d204-48c0-a45a-cff44bb65de8",
             "name": "Filtar por categoria",
             "url": "/controlsales/v1/products/category/65ea73cff419ce56eaa37947",
             "method": "GET",
             "sortNum": 40000,
-            "created": "2024-03-08T02:17:40.386Z",
-            "modified": "2024-03-08T03:13:06.240Z",
+            "created": "2024-03-08T13:27:37.342Z",
+            "modified": "2024-03-08T13:27:37.342Z",
             "headers": [],
             "params": [],
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "dc3649c4-0c09-4b7a-9b8c-c1bbf1a0dd84",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "a7697207-adb5-44fb-b92d-0b586f38bbf6",
+            "_id": "5e913212-50df-41cc-a3fb-2b6d83154a82",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "bf4bc5ae-d204-48c0-a45a-cff44bb65de8",
             "name": "Ver porducto individual por nombre",
             "url": "/controlsales/v1/products/Banano",
             "method": "GET",
             "sortNum": 50000,
-            "created": "2024-03-07T00:08:59.270Z",
-            "modified": "2024-03-08T02:13:05.185Z",
+            "created": "2024-03-08T13:27:37.337Z",
+            "modified": "2024-03-08T13:27:37.337Z",
             "headers": [],
             "params": [],
-            "reqType": "get",
             "tests": []
         },
         {
-            "_id": "d7920886-36c6-4abb-98e6-9abd89c1b76f",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "7b0a6fd2-5374-4251-b778-ee08b6dfa126",
+            "_id": "f495c0db-6870-4d5b-8b7a-2a49c5fba002",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "a6e6205b-4fd1-4cbd-b8f5-d85c97c23b17",
             "name": "Editar Categorias",
             "url": "http://localhost:8080/controlsales/v1/categories/65ea7340f419ce56eaa3792a",
             "method": "PUT",
             "sortNum": 80000,
-            "created": "2024-03-06T04:06:03.609Z",
-            "modified": "2024-03-08T02:10:42.973Z",
+            "created": "2024-03-08T13:27:37.333Z",
+            "modified": "2024-03-08T13:27:37.333Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -233,19 +299,18 @@
                 "raw": "{\n  \"name\" : \"Electronica\"\n}",
                 "form": []
             },
-            "reqType": "put",
             "tests": []
         },
         {
-            "_id": "5290c291-c703-4491-b551-6b5f5e225478",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "7b0a6fd2-5374-4251-b778-ee08b6dfa126",
+            "_id": "ac1f3ab0-51f5-4c02-984b-4d1f815d333d",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "a6e6205b-4fd1-4cbd-b8f5-d85c97c23b17",
             "name": "Eliminar Categorias",
             "url": "/controlsales/v1/categories/65ea7340f419ce56eaa3792a",
             "method": "DELETE",
             "sortNum": 90000,
-            "created": "2024-03-06T04:40:31.915Z",
-            "modified": "2024-03-08T02:17:14.107Z",
+            "created": "2024-03-08T13:27:37.334Z",
+            "modified": "2024-03-08T13:27:37.334Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -253,19 +318,18 @@
                 }
             ],
             "params": [],
-            "reqType": "del",
             "tests": []
         },
         {
-            "_id": "6716471b-e1f3-48e6-ad18-b48b895b8941",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "e424b301-e8fd-4e78-a3ab-1f5de1cd8841",
+            "_id": "9b6e6c4d-ae3b-4e73-890d-bebcbef6fbc6",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "8bf8bac9-2c83-4fa5-89bb-778ea8e7f775",
             "name": "Editar informacion de productos",
             "url": "/controlsales/v1/products/65e90d80ebf8c3a81ac0e7ba",
             "method": "PUT",
             "sortNum": 140000,
-            "created": "2024-03-07T01:05:34.970Z",
-            "modified": "2024-03-07T02:03:31.345Z",
+            "created": "2024-03-08T13:27:37.338Z",
+            "modified": "2024-03-08T13:27:37.338Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -281,15 +345,15 @@
             "tests": []
         },
         {
-            "_id": "e3ae8fa2-7d08-453a-a9f0-78057eb5ac91",
-            "colId": "f3310cf9-c874-420c-9fff-7c2438034ba0",
-            "containerId": "e424b301-e8fd-4e78-a3ab-1f5de1cd8841",
+            "_id": "f6172b00-b0a7-4f2c-86c6-d67842c53455",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "8bf8bac9-2c83-4fa5-89bb-778ea8e7f775",
             "name": "Eliminar productos",
             "url": "/controlsales/v1/products/65e90d80ebf8c3a81ac0e7ba",
             "method": "DELETE",
             "sortNum": 150000,
-            "created": "2024-03-07T01:58:10.165Z",
-            "modified": "2024-03-07T01:59:50.827Z",
+            "created": "2024-03-08T13:27:37.339Z",
+            "modified": "2024-03-08T13:27:37.339Z",
             "headers": [
                 {
                     "name": "x-token",
@@ -297,6 +361,25 @@
                 }
             ],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0b7663bb-b1c2-4538-b29f-b5d6d7d5f6cd",
+            "colId": "3604fd13-ab93-420c-a7db-3ca4d8659f52",
+            "containerId": "cf49cc2c-29a8-4a73-8dd4-0ede1ab16528",
+            "name": "Agregar al carrito",
+            "url": "http://localhost:8080/controlsales/v1/cart/",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2024-03-08T13:55:17.634Z",
+            "modified": "2024-03-08T15:18:02.733Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cartProducts\": [\n    {\n      \"product\": \"Cebolla\",\n      \"quantity\": 5\n    }\n  ]\n}",
+                "form": []
+            },
             "tests": []
         }
     ],
