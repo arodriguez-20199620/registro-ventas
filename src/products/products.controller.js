@@ -81,7 +81,7 @@ export const viewCatalog = async (req, res) => {
             };
         }));
 
-        res.status(200).json(productsList);
+        res.status(200).json({ products: productsList });
     } catch (error) {
         console.error(error);
         res.status(500).json('Internal Server Error');
@@ -99,7 +99,7 @@ export const availableProducts = async (req, res) => {
                     name: product.name,
                     stock: product.stock,
                 }));
-            res.status(200).json({ msg: "Products out of stock", productsList });
+            res.status(200).json({ msg: "Products out of stock", products: productsList });
         } else {
             res.status(200).json({ msg: "There are no products out of stock, Enjoy all our products :)" });
         }
@@ -109,6 +109,31 @@ export const availableProducts = async (req, res) => {
         res.status(500).json('Internal Server Error');
     }
 }
+
+export const filterCategories = async (req, res) => {
+    const categoryId = req.params.categoryId
+
+    try {
+        const products = await Products.find({ status: true, categoryId: categoryId });
+
+        const productsList = await Promise.all(products.map(async (product) => {
+            const category = await Categories.findOne({ _id: product.categoryId });
+            return {
+                id: product._id,
+                name: product.name,
+                price: product.price,
+                stock: product.stock,
+                sales: product.sales,
+                category: category ? category.name : 'N/A',
+            };
+        }));
+
+        res.status(200).json({ products: productsList });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Internal Server Error');
+    }
+};
 
 export const moreSales = async (req, res) => {
     try {
@@ -127,9 +152,7 @@ export const moreSales = async (req, res) => {
             };
         }));
 
-        res.status(200).json({
-            productsList
-        });
+        res.status(200).json({ products: productsList });
     } catch (error) {
         console.error(error);
         res.status(500).json('Internal Server Error');
@@ -153,10 +176,7 @@ export const searchProduct = async (req, res) => {
                 category: category ? category.name : 'N/A',
             };
         }));
-        res.status(200).json({
-            productsList
-        });
-
+        res.status(200).json({ products: productsList });
     } catch (error) {
         console.error(error);
         res.status(500).json('Internal Server Error');

@@ -3,19 +3,25 @@ import { check } from "express-validator";
 
 // validations
 import { validateFields } from "../middlewares/validate-fields.js";
-import { notCategory } from "../helpers/categories-validations.js";
+import { notCategory, categoryExistsById } from "../helpers/categories-validations.js";
 import { productExists, validatePrice, productExistsById, notProduct } from "../helpers/products-validations.js";
 import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js"
 
 // Controller
-import { createProducts, viewCatalog, searchProduct, editProducts, deleteProducts, moreSales, availableProducts } from "./products.controller.js";
+import { createProducts, viewCatalog, searchProduct, editProducts, deleteProducts, moreSales, availableProducts, filterCategories } from "./products.controller.js";
 
 const router = Router();
 
 router.get("/", viewCatalog);
 
 router.get("/sales", moreSales);
+
+router.get("/category/:categoryId",
+    [
+        check("categoryId", "The id is not a valid MongoDB format").isMongoId(),
+        check("categoryId").custom(categoryExistsById),
+    ], filterCategories);
 
 router.get("/exhausted", availableProducts);
 
