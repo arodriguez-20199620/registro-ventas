@@ -27,7 +27,7 @@ export const confirmPayment = async (req, res) => {
 
                 total += product.price * cartItem.quantity;
 
-                product.sales += cartItem.quantity;
+                product.sales += 1;
                 await product.save();
             }
         }
