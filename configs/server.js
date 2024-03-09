@@ -10,6 +10,7 @@ import morgan from 'morgan'
 import categoriesRoutes from '../src/categories/categories.routes.js';
 import userRoutes from '../src/users/user.routes.js';
 import productsRoutes from '../src/products/products.routes.js';
+import invoiceRoutes from '../src/invoices/invoices.routes.js';
 
 class Server {
 
@@ -19,6 +20,7 @@ class Server {
         this.userPath = '/controlsales/v1/user';
         this.categoriesPath = '/controlsales/v1/categories'
         this.productsPath = '/controlsales/v1/products'
+        this.invoicesPath = '/controlsales/v1/invoices'
 
         this.conectarDB();
         this.middlewares();
@@ -41,7 +43,8 @@ class Server {
         this.app.use(this.userPath, userRoutes);
         this.app.use(this.categoriesPath, categoriesRoutes);
         this.app.use(this.productsPath, productsRoutes);
-        
+        this.app.use(this.invoicesPath, invoiceRoutes);
+
     }
 
     listen() {
