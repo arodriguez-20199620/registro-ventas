@@ -98,6 +98,29 @@ export const editUser = async (req, res) => {
     }
 }
 
+export const listUsers = async (req, res) => {
+    const user = await User.find({ status: true })
+    try {
+
+        const userList = user.map(user => ({
+            id: user._id,
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            role: user.role,
+
+        }));
+
+        res.status(200).json(userList);
+    } catch (error) {
+        console.error('Error al obtener las categorías:', error);
+        res.status(500).json({ mensaje: 'Error al obtener las categorías. Por favor, inténtalo de nuevo.' });
+    }
+}
+
+
+
+
 
 export const addToCart = async (req, res) => {
     const userId = req.user._id;

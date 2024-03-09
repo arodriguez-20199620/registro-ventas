@@ -8,10 +8,12 @@ import { validateToken } from "../middlewares/validate-token.js";
 import { validateUserRole } from "../middlewares/validate-role.js";
 
 // Controllers
-import { register, assignRole, deleteUserAdmin, deleteUserClient, editUser, addToCart } from "./user.controller.js";
+import { register, assignRole, deleteUserAdmin, deleteUserClient, editUser, addToCart, listUsers } from "./user.controller.js";
 import { login } from "../auth/auth.controller.js";
 
 const router = Router()
+
+router.get('/', listUsers)
 
 router.post(
     '/login',
@@ -49,7 +51,6 @@ router.put('/assign/:email',
     [
         validateToken,
         validateUserRole('ADMIN'),
-        check("email", "The id is not a valid MongoDB format").isMongoId(),
         check("email").custom(notEmail),
         check("role").custom(validateRole),
         validateFields,
