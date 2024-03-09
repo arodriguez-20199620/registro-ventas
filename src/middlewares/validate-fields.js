@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+import Products from "../products/products.model.js";
 
 export const validateFields = (req, res, next) => {
     try {
@@ -12,4 +13,5 @@ export const validateFields = (req, res, next) => {
 
     next();
 }
+
 

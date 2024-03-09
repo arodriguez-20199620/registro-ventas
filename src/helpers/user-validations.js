@@ -1,5 +1,6 @@
 import User from "../users/user.model.js";
 import zxcvbn from "zxcvbn";
+import Products from "../products/products.model.js";
 
 export const emailExists = async (email = '') => {
     try {
@@ -54,3 +55,39 @@ export const validateRole = async (role = '') => {
 
     }
 }
+
+export const productExists = async (products = []) => {
+    const productNames = products.map(item => item.productName);
+
+    for (let i = 0; i < products.length; i++) {
+        const productModel = await Products.findOne({ name: productNames[i] });
+
+        if (!productModel) {
+            throw new Error(`El producto ${productNames[i]} no existe en la base de datos`);
+        }
+
+        if (!productModel.status) {
+            throw new Error(`El producto ${productNames[i]} no está disponible actualmente`);
+        }
+    }
+};
+
+
+export const validateStock = async (products = []) => {
+    try {
+        if (products && Array.isArray(products)) {
+            for (const item of products) {
+                const { productName, quantity } = item;
+                const product = await Products.findOne({ name: productName });
+
+                if (product && product.stock < (quantity || 1)) {
+                    throw new Error(`Not enough stock available for ${productName}. Current Stock: ${product.stock}`);
+                }
+            }
+        } else {
+            throw new Error('Invalid request data');
+        }
+    } catch (error) {
+        throw error;
+    }
+};

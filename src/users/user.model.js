@@ -24,6 +24,13 @@ const UserSchema = mongoose.Schema({
         required: true,
         default: 'CLIENT'
     },
+    cart: [
+        {
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+            quantity: { type: Number, default: 1 },
+        },
+    ],
+    // cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
     status: {
         type: Boolean,
         default: true,

@@ -1,5 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import User from './user.model.js';
+import Product from '../products/products.model.js';
 
 export const register = async (req, res) => {
     const { email, password, firstname, lastname, role } = req.body;
@@ -96,3 +97,65 @@ export const editUser = async (req, res) => {
         res.status(500).json({ error: 'Error' });
     }
 }
+
+
+export const addToCart = async (req, res) => {
+    const userId = req.user._id;
+
+    try {
+        const user = await User.findById(userId);
+        const { products } = req.body;
+
+        if (user && products && Array.isArray(products)) {
+            let totalAmount = 0;  // Inicializa el total a pagar
+
+            // Sumar el costo de los productos existentes en el carrito
+            for (const cartItem of user.cart) {
+                const product = await Product.findOne({ _id: cartItem.productId });
+                if (product) {
+                    totalAmount += (product.price * cartItem.quantity);
+                }
+            }
+            for (const item of products) {
+                const { productName, quantity } = item;
+                const product = await Product.findOne({ name: productName });
+
+                if (product) {
+                    const existingCartItem = user.cart.find(cartItem => cartItem.productId.equals(product._id));
+                    if (existingCartItem) {
+                        existingCartItem.quantity += quantity || 1;
+                    } else {
+                        user.cart.push({ productId: product._id, quantity: quantity || 1 });
+                    }
+
+                    product.stock -= quantity || 1;
+                    await product.save();
+
+                    totalAmount += (product.price * (quantity || 1));
+
+                }
+            }
+            await user.save();
+
+
+            const cart = await Promise.all(user.cart.map(async (item) => {
+                const product = await Product.findOne({ _id: item.productId });
+                return {
+                    product: product.name,
+                    quantity: item.quantity
+                };
+            }));
+
+            res.status(201).json({
+                msg: 'Products in cart',
+                cart,
+                totalAmount
+            });
+        } else {
+            res.status(400).json({ message: 'Datos de solicitud no válidos' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+

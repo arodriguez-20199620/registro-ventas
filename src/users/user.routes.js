@@ -2,12 +2,13 @@ import { Router } from "express";
 import { check } from "express-validator";
 
 // Validations
-import { emailExists, validatePassword, validateRole, notEmail, existUserById } from "../helpers/user-validations.js";
+import { emailExists, validatePassword, validateRole, notEmail, existUserById, productExists, validateStock } from "../helpers/user-validations.js";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { validateToken } from "../middlewares/validate-token.js";
-import { validateUserRole } from "../middlewares/validate-role.js"
+import { validateUserRole } from "../middlewares/validate-role.js";
+
 // Controllers
-import { register, assignRole, deleteUserAdmin, deleteUserClient, editUser } from "./user.controller.js";
+import { register, assignRole, deleteUserAdmin, deleteUserClient, editUser, addToCart } from "./user.controller.js";
 import { login } from "../auth/auth.controller.js";
 
 const router = Router()
@@ -67,14 +68,21 @@ router.put('/',
 router.delete('/adminDelte/:userId',
     [
         validateToken,
+        validateUserRole('ADMIN'),
         check("userId", "The id is not a valid MongoDB format").isMongoId(),
         check("userId").custom(existUserById),
         validateFields,
     ], deleteUserAdmin)
 
+
+router.post('/cart',
+    [
+        validateToken,
+        check("products").custom(productExists),
+        check("products").custom(validateStock),
+        validateFields,
+    ], addToCart)
+
 router.delete('/', validateToken, deleteUserClient);
-
-
-
 
 export default router
