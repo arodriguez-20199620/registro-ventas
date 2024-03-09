@@ -107,9 +107,7 @@ export const addToCart = async (req, res) => {
         const { products } = req.body;
 
         if (user && products && Array.isArray(products)) {
-            let totalAmount = 0;  // Inicializa el total a pagar
-
-            // Sumar el costo de los productos existentes en el carrito
+            let totalAmount = 0;
             for (const cartItem of user.cart) {
                 const product = await Product.findOne({ _id: cartItem.productId });
                 if (product) {

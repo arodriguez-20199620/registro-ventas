@@ -33,7 +33,7 @@ export const confirmPayment = async (req, res) => {
         }
 
         const newInvoice = new Invoice({
-            user: user._id,
+            userId: user._id,
             products: invoiceProducts,
             total,
         });
@@ -47,5 +47,31 @@ export const confirmPayment = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+}
 
+export const shoppingHistory = async (req, res) => {
+    const userId = req.user._id;
+    try {
+        const userInvoices = await Invoice.find({ userId: userId });
+
+
+
+        const formattedInvoices = await Promise.all(userInvoices.map(async (invoice) => {
+            const user = await User.findOne({ _id: invoice.userId });
+            return {
+                user: user ? user.email : 'N/A',
+                products: invoice.products.map(product => ({
+                    productName: product.productName,
+                    quantity: product.quantity,
+                    price: product.price,
+                })),
+                total: invoice.total,
+                date: invoice.date,
+            };
+        }));
+
+        res.status(200).json(formattedInvoices);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }

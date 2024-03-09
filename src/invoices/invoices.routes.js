@@ -4,11 +4,11 @@ import { Router } from 'express';
 import { validateToken } from '../middlewares/validate-token.js';
 
 // controller
-import { confirmPayment } from './invoices.controller.js';
+import { confirmPayment, shoppingHistory } from './invoices.controller.js';
 
 const router = Router();
 
-router.get('/', validateToken, confirmPayment)
+router.get('/', validateToken, shoppingHistory)
 
 router.post('/', validateToken, confirmPayment)
 

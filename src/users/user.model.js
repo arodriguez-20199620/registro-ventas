@@ -30,7 +30,6 @@ const UserSchema = mongoose.Schema({
             quantity: { type: Number, default: 1 },
         },
     ],
-    // cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
     status: {
         type: Boolean,
         default: true,
